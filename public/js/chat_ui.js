@@ -7,7 +7,7 @@ function liSystemContentElement(message) {
 
 function startChat(chatApp, socket) {
     var nickname = $('#nickname').val();
-    var room = $('#room').val();
+    var room = $('.roomToEnter').find(":selected").text();
 
     chatApp.joinChat(nickname, room);
 }
@@ -30,7 +30,7 @@ function processUserInput(chatApp, socket) {
 
 function updateData() {
     //fix
-    $('#currentRoom').html($('#room').val());
+    $('#currentRoom').html($('.roomToEnter').find(":selected").text());
     socket.emit('rooms');
     //allRooms
 }
@@ -81,7 +81,7 @@ $(document).ready(function() {
 
     $('#joinChat').click(function () {
         startChat(chatApp, socket);
-        $('#chatContainer').show();
+        $('#chatWindow').show();
         $('#introChat').hide();
         updateData();
 
